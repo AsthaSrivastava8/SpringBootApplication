@@ -1,6 +1,7 @@
 package controllerPackage;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,7 @@ public class TopicController {
 	}
 
 	@RequestMapping("/topics/{id}")
-	public Topic getTopic(@PathVariable("id") String id) {
+	public Optional<Topic> getTopic(@PathVariable("id") String id) {
 		return topicService.getTopic(id);
 	}
 
