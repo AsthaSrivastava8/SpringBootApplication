@@ -1,20 +1,34 @@
 package controllerPackage;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TopicController {
 
+	@Autowired
+	private TopicService topicService;
+
 	@RequestMapping("/topics")
 	public List<Topic> getAllTopics() {
-		return Arrays.asList(
-
-				new Topic("spring", "Spring Framework", "Spring Description"),
-				new Topic("angular", "Angular Framework", "Angular Description"),
-				new Topic("java", "Java Framework", "Java Description"));
+		return topicService.getAllTopics();
+	}
+	
+	@RequestMapping("/topics/{id}")
+	public Topic getTopic(@PathVariable("id") String id) {
+		return topicService.getTopic(id);
+	}
+	
+	@PostMapping(value="/topics")
+	@RequestMapping(method=RequestMethod.POST, value = "/topics")
+	public void addTopic(@RequestBody Topic topic) {
+		topicService.addTopic(topic);
 	}
 }
