@@ -1,14 +1,22 @@
 package controllerPackage;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Topic")
 public class Topic {
 
 	@Id
+	@GeneratedValue
 	private String id;
-	private String topicName, description;
+	@Column(name = "TopicName")
+	private String topicName;
+	@Column(name = "Description")
+	private String description;
 
 	public Topic() {
 		super();
