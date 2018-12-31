@@ -22,7 +22,7 @@ public class TopicController {
 	}
 
 	@RequestMapping("/topics/{id}")
-	public Optional<Topic> getTopic(@PathVariable("id") String id) {
+	public Topic getTopic(@PathVariable("id") String id) {
 		return topicService.getTopic(id);
 	}
 
